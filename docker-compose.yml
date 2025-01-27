@@ -5,7 +5,7 @@ services:
       - "9000:9000"
     environment:
       - PORT=9000
-      - LLM_API_KEY=your_api_key_here
+      - OPENAI_API_KEY=sk-Zx-ulKR2hOEMKJRzJjBCUD7Ur_CJL692TZGgyxIwbST3BlbkFJFPe6_IocSBIU4PNfpmGr1iWZRAKsXKfOZ8795PzDwA
     volumes:
       - ./backend:/app
       - /app/node_modules
