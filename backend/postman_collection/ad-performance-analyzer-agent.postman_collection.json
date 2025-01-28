@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "0ad42e82-2326-4984-b2f5-d46b36cf5eaa",
+		"name": "ad-performance-analyzer-agent",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22448611"
+	},
+	"item": [
+		{
+			"name": "Upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/yashraj/Downloads/Sponsored_Products_adgroup_search_terms_Jan_18_2025.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9000/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Analyze",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"filePath\": \"/app/uploads/1738083487961.csv\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/analyze",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"analyze"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

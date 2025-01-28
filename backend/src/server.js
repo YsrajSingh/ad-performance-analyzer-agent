@@ -8,6 +8,11 @@ app.use(express.json());
 
 dotenv.config();
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        success: true,
+    });
+});
 app.use('/upload', uploadRoute);
 app.use('/analyze', analyzeRoute);
 
