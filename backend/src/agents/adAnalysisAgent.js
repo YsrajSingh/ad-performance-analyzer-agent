@@ -5,7 +5,7 @@ const { StringOutputParser } = require('@langchain/core/output_parsers');
 // Initialize with latest GPT-4 Turbo model
 const model = new ChatOpenAI({
     apiKey: process.env.OPENAI_API_KEY,
-    modelName: "gpt-4-turbo-preview", // Latest model as of July 2024
+    modelName: "gpt-4-turbo", // Latest model as of July 2024
     temperature: 0.1, // Lower for more factual responses
     maxTokens: 1200,
     timeout: 30000, // 30s timeout
@@ -16,15 +16,22 @@ const analyzePrompt = PromptTemplate.fromTemplate(
     `## Ad Performance Analysis (Structured Analysis)
 
 **Objective:** Analyze {data} and provide:
-1. Top 3 performers (ROAS > 300%, ACOS < 15%, CTR > 0.5%)
-2. Bottom 3 performers (ROAS < 100%, ACOS > 30%)
-3. Budget reallocation plan
-4. Immediate optimization actions
+1. **Performance Summary (5-7 sentences):** 
+    - Summarize the ad's performance considering key metrics like ROAS, ACOS, CTR, and conversion rates.
+    - Include specific analysis of **keywords** that performed well (high ROAS, low ACOS, high CTR) and keywords that need optimization.
+2. **Top 3 Performers:**
+    - Identify the top 3 ads based on their overall performance, including key metrics such as **ROAS**, **ACOS**, and **CTR**. Rank them according to which are performing the best.
+3. **Bottom 3 Performers:**
+    - Identify the bottom 3 ads based on their overall performance, including key metrics such as **ROAS**, **ACOS**, and **CTR**. Rank them according to which are performing the worst.
+4. **Budget Reallocation Plan:**
+    - Suggest how to reallocate the budget towards high-performing ads.
+5. **Immediate Optimization Actions:**
+    - Recommend immediate steps to optimize the ad's performance, such as adjusting bids or targeting.
 
 **Format Requirements:**
 - Strict Markdown with ### headings
 - 5-7 bullet points per section
-- Metrics must be bolded
+- Metrics must be **bolded**
 - Response time < 45 seconds
 
 **Data Sample:**
