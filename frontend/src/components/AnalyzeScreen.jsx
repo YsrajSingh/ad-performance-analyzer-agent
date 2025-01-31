@@ -8,7 +8,7 @@ const AnalyzeScreen = ({ filePath }) => {
     useEffect(() => {
       if (!filePath) return;
   
-      fetch("http://localhost:9000/analyze", {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/analyze`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ filePath }),
@@ -17,11 +17,11 @@ const AnalyzeScreen = ({ filePath }) => {
           .then(({ sessionId }) => {
               if (!sessionId) throw new Error("Session ID missing");
   
-              eventSourceRef.current = new EventSource(`http://localhost:9000/analyze/stream/${sessionId}`);
+              eventSourceRef.current = new EventSource(`${import.meta.env.VITE_BACKEND_URL}/analyze/stream/${sessionId}`);
   
               eventSourceRef.current.onmessage = (event) => {
                   const data = JSON.parse(event.data);
-                  console.log(data)
+
                   if (data.summary) {
                       setAnalysis((prev) => prev + data.summary);
                   } 
@@ -44,9 +44,11 @@ const AnalyzeScreen = ({ filePath }) => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white px-4">
-            <h2 className="text-3xl text-gray-100 mb-4">Analyzing Results</h2>
+          <h1 className="text-4xl font-bold text-gray-100 mb-6">
+            Analyzing Results
+          </h1>
             <div className="prose prose-invert max-w-2xl text-gray-300">
-                <ReactMarkdown>{analysis || "Processing..."}</ReactMarkdown>
+                <ReactMarkdown className="text-justify">{analysis || "Processing..."}</ReactMarkdown>
             </div>
         </div>
     );

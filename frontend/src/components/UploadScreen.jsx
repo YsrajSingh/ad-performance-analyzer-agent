@@ -13,7 +13,7 @@ const UploadScreen = ({ onAnalyze, onNext }) => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post("http://localhost:9000/upload", formData, {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -33,8 +33,9 @@ const UploadScreen = ({ onAnalyze, onNext }) => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white px-4">
-      <h2 className="text-3xl text-gray-100 mb-4">Upload Your Ad Data</h2>
-      
+      <h1 className="text-4xl font-bold text-gray-100 mb-6">
+        Upload Your Ad Data
+      </h1>
       <input
         type="file"
         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
@@ -44,7 +45,6 @@ const UploadScreen = ({ onAnalyze, onNext }) => {
         }}
         className="mb-4 p-2 bg-gray-700 text-white rounded-lg"
       />
-
       <button
         onClick={uploaded ? handleAnalyze : handleUpload}
         className="px-6 py-3 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 transition-colors duration-300"
