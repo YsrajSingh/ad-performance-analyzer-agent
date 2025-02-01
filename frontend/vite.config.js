@@ -9,6 +9,7 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
+    allowedHosts: ['ads.yashrajs.com'],
     proxy: {
       '/upload': process.env.VITE_BACKEND_URL,
       '/analyze': process.env.VITE_BACKEND_URL,
