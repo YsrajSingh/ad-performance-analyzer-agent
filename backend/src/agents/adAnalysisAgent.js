@@ -5,9 +5,8 @@ const { ChatOpenAI } = require('@langchain/openai'); // Ensure this package is i
 // Initialize OpenAI model
 const model = new ChatOpenAI({
     openAIApiKey: process.env.OPENAI_API_KEY,
-    modelName: 'gpt-4o-mini	', // Ensure GPT-4 access or use 'gpt-3.5-turbo'
+    modelName: 'gpt-4o-mini-2024-07-18', // Ensure GPT-4 access or use 'gpt-3.5-turbo'
     temperature: 0.2,
-    maxTokens: 150,
 });
 
 const adAnalysisAgent = async (adData, onDataChunk) => {
